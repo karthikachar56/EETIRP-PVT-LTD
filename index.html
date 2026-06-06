@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EETIRP | Hybrid EdTech & Startup Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for beautiful icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            dark: '#020617',
+                            card: '#0b1329',
+                            border: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow-effect:hover {
+            box-shadow: 0 0 30px -5px rgba(139, 92, 246, 0.35);
+        }
+        .glow-cyan:hover {
+            box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.35);
+        }
+        .neon-border {
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+        .neon-border:hover {
+            border-color: rgba(6, 182, 212, 0.6);
+        }
+        /* Custom dynamic scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7c3aed;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <nav class="sticky top-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo Integration -->
+                <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="relative flex items-center justify-center p-1.5 h-11 bg-white rounded-xl shadow-lg shadow-white/5 group-hover:scale-105 transition-all duration-300">
+                        <img src="WhatsApp Image 2026-06-05 at 11.15.36 PM.jpeg" alt="EETIRP Logo" class="h-full w-auto object-contain rounded-md">
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-widest bg-gradient-to-r from-white via-slate-200 to-brand-500 bg-clip-text text-transparent">EETIRP</span>
+                        <p class="text-[9px] text-cyan-400 font-mono tracking-widest uppercase">Hybrid Tech Studio</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-slate-300 hover:text-brand-500 transition-colors duration-200 text-sm font-semibold">Our Positioning</a>
+                    <a href="#programs" class="text-slate-300 hover:text-brand-500 transition-colors duration-200 text-sm font-semibold">What We Do</a>
+                    <a href="#saas-lab" class="text-slate-300 hover:text-brand-500 transition-colors duration-200 text-sm font-semibold flex items-center space-x-1.5">
+                        <span>SaaS Lab</span>
+                        <span class="inline-flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+                    </a>
+                    <a href="#team" class="text-slate-300 hover:text-brand-500 transition-colors duration-200 text-sm font-semibold">Leadership</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-600 hover:from-brand-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-brand-600/20 transition-all duration-300 hover:scale-[1.02]">
+                        Join Ecosystem
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-400 hover:text-white focus:outline-none p-2 rounded-lg hover:bg-slate-900 transition-colors">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-brand-border/60 backdrop-blur-lg px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" class="block text-slate-300 hover:text-brand-500 py-2.5 text-base font-medium" onclick="toggleMobileMenu()">Our Positioning</a>
+            <a href="#programs" class="block text-slate-300 hover:text-brand-500 py-2.5 text-base font-medium" onclick="toggleMobileMenu()">What We Do</a>
+            <a href="#saas-lab" class="block text-slate-300 hover:text-brand-500 py-2.5 text-base font-medium" onclick="toggleMobileMenu()">SaaS Lab</a>
+            <a href="#team" class="block text-slate-300 hover:text-brand-500 py-2.5 text-base font-medium" onclick="toggleMobileMenu()">Leadership</a>
+            <a href="#contact" class="block text-center w-full px-5 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-600 text-white font-semibold text-sm shadow-md" onclick="toggleMobileMenu()">
+                Join Ecosystem
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative pt-16 pb-24 overflow-hidden">
+        <!-- Background Grid & Glowing Orbs -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        <div class="absolute top-20 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full filter blur-[100px] pointer-events-none"></div>
+        <div class="absolute top-40 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full filter blur-[100px] pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8">
+            <!-- Brand Badge showcasing the full official logo cleanly -->
+            <div class="inline-flex flex-col items-center justify-center p-6 mb-10 bg-slate-900/60 border border-brand-border/80 backdrop-blur-md rounded-3xl max-w-sm mx-auto shadow-2xl transition-all hover:scale-[1.02]">
+                <img src="WhatsApp Image 2026-06-05 at 11.15.36 PM.jpeg" alt="EETIRP Official Logo" class="h-16 w-auto object-contain bg-white p-2 rounded-2xl mb-3 shadow-md shadow-brand-500/10">
+                <p class="text-[10px] font-mono tracking-widest text-cyan-300 uppercase">Innovate. Integrate. Elevate.</p>
+            </div>
+
+            <!-- Micro-Badge -->
+            <div class="block">
+                <div class="inline-flex items-center space-x-2 bg-slate-900/80 border border-brand-500/30 rounded-full px-4 py-1.5 mb-8 animate-pulse">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                    <span class="text-xs font-mono text-cyan-300 tracking-wider uppercase">Bridging College Theory & Enterprise Excellence</span>
+                </div>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-6">
+                The Hybrid Ecosystem For <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-white via-slate-100 to-brand-400 bg-clip-text text-transparent">Engineering Leaders</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-xl text-slate-400 font-light mb-10 leading-relaxed">
+                EETIRP merges a high-impact <span class="text-brand-400 font-semibold">Engineering Academy</span> with an active, production-scale <span class="text-cyan-400 font-semibold">Startup Studio</span>. We train elite software engineers by building live production platforms together.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold tracking-wide shadow-xl shadow-brand-600/30 hover:shadow-cyan-500/30 transform transition-all duration-300 hover:scale-[1.03] text-center">
+                    Join Ecosystem Cohort
+                </a>
+                <a href="#saas-lab" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800/90 border border-brand-border text-slate-300 font-semibold transition-all duration-200 text-center flex items-center justify-center space-x-2">
+                    <span>View Live Projects</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Stats Dashboard Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mt-12 bg-slate-900/30 p-6 rounded-3xl border border-brand-border/40 backdrop-blur-sm">
+                <div class="p-4 rounded-2xl bg-brand-dark/40 border border-brand-border/40">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">100%</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Live SaaS Projects</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-dark/40 border border-brand-border/40">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-cyan-400">10x</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Faster Skill Upgrades</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-dark/40 border border-brand-border/40">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-brand-400">Live</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Production SaaS Built</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-brand-dark/40 border border-brand-border/40">
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white">Day-1</p>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Enterprise Ready Contributor</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="py-20 border-t border-brand-border bg-slate-950/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold mb-4 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+                    Our Positioning Model
+                </h2>
+                <p class="text-slate-400 text-base sm:text-lg">
+                    Traditional engineering education leaves a massive gap. EETIRP acts as the vital bridge delivering the technical, logical, and product-focused expertise modern companies demand.
+                </p>
+            </div>
+
+            <!-- Bridge Interactive Toggle Component -->
+            <div class="bg-brand-card rounded-3xl border border-brand-border p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-64 h-64 bg-cyan-500/5 rounded-full filter blur-2xl pointer-events-none"></div>
+                
+                <!-- Toggle Controls -->
+                <div class="flex justify-center mb-10 overflow-x-auto pb-2 no-scrollbar">
+                    <div class="inline-flex bg-slate-900 border border-brand-border p-1.5 rounded-xl whitespace-nowrap">
+                        <button onclick="switchBridgeTab('college')" id="btn-tab-college" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-slate-850 text-slate-400">
+                            Traditional College Theory
+                        </button>
+                        <button onclick="switchBridgeTab('eetirp')" id="btn-tab-eetirp" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-brand-600 to-cyan-500 text-white shadow-md">
+                            EETIRP Bridge & Solutions
+                        </button>
+                        <button onclick="switchBridgeTab('company')" id="btn-tab-company" class="px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-slate-850 text-slate-400">
+                            Enterprise Expectation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Traditional College -->
+                <div id="tab-content-college" class="hidden transition-opacity duration-300 opacity-0">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-6">
+                            <span class="text-xs font-mono px-3 py-1.5 rounded-md bg-rose-500/10 border border-rose-500/20 text-rose-400 uppercase tracking-widest font-bold">The Problem</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">The Academic Knowledge Gap</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                Colleges deliver essential foundational theory and basic algorithmic overviews. However, they lack dynamic updates, sandbox environments, and execution contexts.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-3"></i>
+                                    <span>Outdated syllabi focusing on memorization over deployment.</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-3"></i>
+                                    <span>Dry lab code snippets that never face production-scale performance tests or state management.</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-3"></i>
+                                    <span>Isolated working environments devoid of proper Git-flows, Code Reviews, and CI/CD pipelines.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/80 rounded-2xl border border-rose-500/20 p-6 flex flex-col justify-center text-center">
+                            <i class="fa-solid fa-graduation-cap text-5xl text-rose-400 mb-4"></i>
+                            <div class="h-1 w-20 bg-rose-500 mx-auto rounded-full mb-4"></div>
+                            <p class="text-rose-400 font-bold tracking-wider uppercase text-sm mb-2">Theoretical Base</p>
+                            <p class="text-slate-400 text-sm">Valid starting concepts, but insufficient for direct software-engineering or startup product builds.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: EETIRP Ecosystem -->
+                <div id="tab-content-eetirp" class="block transition-opacity duration-300 opacity-100">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-6">
+                            <span class="text-xs font-mono px-3 py-1.5 rounded-md bg-brand-500/10 border border-brand-500/20 text-brand-400 uppercase tracking-widest font-bold">The Bridge</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Hands-on, Project-Centric SaaS Studio</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                EETIRP integrates the student's theoretical foundation with professional product building. We use active, live in-house SaaS applications as practical Sandboxes for training, architectural study, and collaborative code deployment.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-400 mt-1 mr-3"></i>
+                                    <span>Real-world deployments utilizing standard developer toolchains (Supabase, Next.js, Vercel, Docker).</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-400 mt-1 mr-3"></i>
+                                    <span>Continuous product-oriented sprints that teach student engineers how to scale apps.</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-circle-check text-emerald-400 mt-1 mr-3"></i>
+                                    <span>Active mentor-led startup culture matching actual high-performance tech squads.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/80 rounded-2xl border border-brand-500/20 p-6 flex flex-col justify-center text-center">
+                            <i class="fa-solid fa-rocket text-5xl text-brand-400 mb-4 animate-bounce"></i>
+                            <div class="h-1 w-20 bg-brand-500 mx-auto rounded-full mb-4"></div>
+                            <p class="text-brand-400 font-bold tracking-wider uppercase text-sm mb-2">EETIRP Catalyst Studio</p>
+                            <p class="text-slate-400 text-sm">Where developers build actual Software-as-a-Service platforms, converting theory into concrete functional applications.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Company Expectations -->
+                <div id="tab-content-company" class="hidden transition-opacity duration-300 opacity-0">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-6">
+                            <span class="text-xs font-mono px-3 py-1.5 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 uppercase tracking-widest font-bold">The Goal</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Day-One Ready Contributors</h3>
+                            <p class="text-slate-400 leading-relaxed">
+                                High-growth startups and mature enterprises can't afford six months of fundamental training. They demand immediate, structured technical execution.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-3"></i>
+                                    <span>Autonomous navigation of complex monorepos, clean architecture patterns, and backend performance.</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-3"></i>
+                                    <span>Clean pull request creation, test-driven validation, and resilient APIs.</span>
+                                </li>
+                                <li class="flex items-start text-slate-300">
+                                    <i class="fa-solid fa-bolt text-cyan-400 mt-1 mr-3"></i>
+                                    <span>A product mindset where features are designed for user utility, performance, and efficiency.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900/80 rounded-2xl border border-cyan-500/20 p-6 flex flex-col justify-center text-center">
+                            <i class="fa-solid fa-briefcase text-5xl text-cyan-400 mb-4"></i>
+                            <div class="h-1 w-20 bg-cyan-500 mx-auto rounded-full mb-4"></div>
+                            <p class="text-cyan-400 font-bold tracking-wider uppercase text-sm mb-2">Industry Preparedness</p>
+                            <p class="text-slate-400 text-sm">Ensuring you cross the finish line directly ready to lead features on real-world enterprise systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono font-bold tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1.5 rounded-full uppercase">What We Do</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4">Our Program Pillars</h2>
+                <p class="text-slate-400 text-base">We have systematically deconstructed the full software engineer's journey, introducing hyper-focused pathways for builders of all levels.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Technical Training Programs</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Structured modules covering DSA, systems architecture, networking, databases, and standard engineer practices built around company assessments.</p>
+                    </div>
+                    <div class="flex items-center text-brand-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Academy Focus</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-laptop-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Intensive Coding Bootcamps</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Hyper-focused, stack-specific sprints building real-time apps. Go deep into React, Next.js, Node, Golang, and Cloud Infrastructure.</p>
+                    </div>
+                    <div class="flex items-center text-cyan-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Sprint Model</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-cubes text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Industry-Oriented Projects</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Ditch academic toy problems. Solve actual system bottlenecks, integrate real-world APIs, design DB schemas, and debug live production apps.</p>
+                    </div>
+                    <div class="flex items-center text-emerald-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Sandbox Environment</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-briefcase text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Placement Preparation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">End-to-end placement readiness: intense Mock Interviews, automated coding rounds, ATS resume generation, and structured system design preparation.</p>
+                    </div>
+                    <div class="flex items-center text-pink-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Career Gateway</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Program 5 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-users text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Corporate Upskilling</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Enterprise-level training built for active engineering roles. Upgrade staff workflows to handle cloud architectures, AI tools, and DevOps pipelines.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Enterprise Upgrades</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Program 6 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-lightbulb text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Research & Innovation</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Translating concepts into technical realities. Direct mentorship on advanced proof of concepts, custom engineering tools, and hardware-software integrations.</p>
+                    </div>
+                    <div class="flex items-center text-blue-400 font-semibold text-xs tracking-wider uppercase">
+                        <span>Innovation Desk</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="saas-lab" class="py-24 bg-slate-950/80 border-t border-b border-brand-border/60 relative overflow-hidden">
+        <div class="absolute -top-40 left-10 w-96 h-96 bg-brand-600/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 right-10 w-96 h-96 bg-cyan-500/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 bg-cyan-400/10 px-3 py-1.5 rounded-full uppercase">SaaS Sandbox Lab</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4">Present Ongoing Projects</h2>
+                <p class="text-slate-400 text-base">We don't teach from empty slides. EETIRP acts as a live Startup Studio, engineering real products. These platforms serve as live production ecosystems where our student-engineers write code, monitor databases, and deploy production upgrades.</p>
+            </div>
+
+            <!-- Ongoing Projects Interactive Grid -->
+            <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                
+                <!-- Left Hand Side Selector Cards -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    
+                    <!-- Project Selector Card 1 -->
+                    <div id="project-card-placement" onclick="selectSaaSLabProject('placement')" class="cursor-pointer bg-slate-900 border-2 border-brand-500/80 rounded-2xl p-6 transition-all duration-300 shadow-xl group">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/15 flex items-center justify-center text-brand-400 group-hover:scale-105 transition-transform">
+                                    <i class="fa-solid fa-robot text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                                        <span>Placement AI Platform</span>
+                                        <span class="inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                                    </h3>
+                                    <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-semibold">Active Production</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500 group-hover:text-white transition-colors">01</span>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mt-4">
+                            An AI-driven environment optimizing interview preparedness. Utilizes automated evaluation engines, resume scorers, and smart predictive diagnostics.
+                        </p>
+                        <div class="mt-4 flex items-center space-x-2 text-xs text-brand-400 font-semibold group-hover:translate-x-1 transition-transform">
+                            <span>Explore detailed specs</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </div>
+                    </div>
+
+                    <!-- Project Selector Card 2 -->
+                    <div id="project-card-kaura" onclick="selectSaaSLabProject('kaura')" class="cursor-pointer bg-slate-900/40 border border-brand-border rounded-2xl p-6 transition-all duration-300 group">
+                        <div class="flex items-start justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/15 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform">
+                                    <i class="fa-solid fa-cube text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                                        <span>Kaura Hub</span>
+                                        <span class="inline-flex h-2 w-2 rounded-full bg-cyan-400"></span>
+                                    </h3>
+                                    <span class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-semibold">Active Production</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-slate-500 group-hover:text-white transition-colors">02</span>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mt-4">
+                            A next-generation student ecosystem integrating AI utilities, dynamic resume builders, smart semester tracking, and technical tools.
+                        </p>
+                        <div class="mt-4 flex items-center space-x-2 text-xs text-cyan-400 font-semibold group-hover:translate-x-1 transition-transform">
+                            <span>Explore detailed specs</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Integration Info Box -->
+                    <div class="bg-gradient-to-br from-brand-600/10 to-cyan-500/10 border border-brand-border rounded-2xl p-6">
+                        <h4 class="text-xs font-mono font-bold text-white tracking-widest uppercase mb-2">Live Studio Integration</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            These aren't just mockup dashboards. Every student inside EETIRP gets assigned repository tickets, handles actual customer bugs, reviews real metrics logs, and helps deploy features directly to production.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Hand Side Interactive Console / Specs Preview -->
+                <div class="lg:col-span-7 bg-brand-card rounded-3xl border border-brand-border/80 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[500px]">
+                    
+                    <!-- Console Header bar -->
+                    <div class="bg-slate-950/80 px-6 py-4 border-b border-brand-border/60 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <span class="text-xs text-slate-500 font-mono ml-4">eetirp_studio://live-preview</span>
+                        </div>
+                        <span id="console-current-project" class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2.5 py-1 rounded-md">placement-ai</span>
+                    </div>
+
+                    <!-- Console Body: Dynamic Display Container -->
+                    <div class="p-6 sm:p-8 flex-grow">
+                        
+                        <!-- Console Section: Placement Platform -->
+                        <div id="console-content-placement" class="space-y-6 block">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div>
+                                    <span class="text-xs font-mono bg-brand-500/20 text-brand-300 px-2.5 py-1 rounded">Ecosystem App 01</span>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Placement AI Platform</h3>
+                                </div>
+                                <a href="https://placementaiplatform.vercel.app/" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-brand-600 to-cyan-500 hover:from-brand-500 hover:to-cyan-400 text-white font-bold text-xs rounded-xl shadow-lg shadow-brand-600/20 transition-all hover:scale-105">
+                                    <span>Launch Platform</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                An integrated AI ecosystem designed to help engineering students prepare for and secure top-tier placements. The platform uses tailored LLM workflows to run predictive simulations on standard software assessments.
+                            </p>
+
+                            <!-- Features List -->
+                            <div>
+                                <h4 class="text-xs font-mono uppercase font-bold text-slate-300 tracking-wider mb-3">Key Features Built by EETIRP Engineers:</h4>
+                                <div class="grid sm:grid-cols-2 gap-3">
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-robot text-brand-400"></i>
+                                        <span>AI Mock Interviews & Speech Tone Diagnostics</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-file-invoice text-brand-400"></i>
+                                        <span>Automated ATS Resume Parsing & Scorer</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-code text-brand-400"></i>
+                                        <span>Real-time Code Analyzer & Complexity Reviewer</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-chart-line text-brand-400"></i>
+                                        <span>Diagnostic Performance Dashboards</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live Technical Stack used -->
+                            <div class="pt-4 border-t border-brand-border/40">
+                                <h4 class="text-xs font-mono uppercase font-bold text-slate-400 tracking-wider mb-2">Tech Stack Sandbox Profile</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Next.js</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Tailwind CSS</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">OpenAI API</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Supabase DB</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Vercel Edge</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Console Section: Kaura Hub -->
+                        <div id="console-content-kaura" class="space-y-6 hidden">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div>
+                                    <span class="text-xs font-mono bg-cyan-500/20 text-cyan-300 px-2.5 py-1 rounded">Ecosystem App 02</span>
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Kaura Hub</h3>
+                                </div>
+                                <a href="https://www.kaurahub.com/" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-cyan-600 to-brand-500 hover:from-cyan-500 hover:to-brand-400 text-white font-bold text-xs rounded-xl shadow-lg shadow-cyan-600/20 transition-all hover:scale-105">
+                                    <span>Launch Platform</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                A next-generation student workspace developed under EETIRP LTD. Kaura integrates vital student utilities, notes engines, and productivity tools into one unified student portal.
+                            </p>
+
+                            <!-- Features List -->
+                            <div>
+                                <h4 class="text-xs font-mono uppercase font-bold text-slate-300 tracking-wider mb-3">Core Modules & Tools in Production:</h4>
+                                <div class="grid sm:grid-cols-2 gap-3">
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-file-lines text-cyan-400"></i>
+                                        <span>Resume Builder & Portfolio Optimizer</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-book-open text-cyan-400"></i>
+                                        <span>Kaura Learning Hub & Semester Notes</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-calculator text-cyan-400"></i>
+                                        <span>Engineering Utilities & Smart Schedule</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2 text-xs text-slate-400 bg-slate-900 border border-brand-border/40 p-2.5 rounded-lg">
+                                        <i class="fa-solid fa-circle-question text-cyan-400"></i>
+                                        <span>Aptitude Training & Job Prep Trackers</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live Technical Stack used -->
+                            <div class="pt-4 border-t border-brand-border/40">
+                                <h4 class="text-xs font-mono uppercase font-bold text-slate-400 tracking-wider mb-2">Tech Stack Sandbox Profile</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Modern Frontend Stacks</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">Supabase Auth</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">PostgreSQL Cloud</span>
+                                    <span class="text-[10px] font-mono bg-slate-900 px-2 py-1 rounded border border-brand-border text-slate-300">AI Integration Services</span>
+                                </div>
+                            </div>
+                        </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-500/30 transition-colors">
+                    <div class="space-y-4">
+                        <div class="flex items-center text-yellow-500 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "EETIRP's SaaS integration changed how I look at design patterns. We worked directly inside real API routes handling live authentication routines. I passed my startup interview instantly."
+                        </p>
+                    </div>
+                    <div class="flex items-center mt-6 space-x-3 pt-6 border-t border-brand-border/40">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xs font-bold font-mono">SS</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Siddharth Sharma</h4>
+                            <p class="text-xs text-slate-500">Full Stack Engineer, DevLabs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-500/30 transition-colors">
+                    <div class="space-y-4">
+                        <div class="flex items-center text-yellow-500 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "We outsourced our internal technical training bootcamps to EETIRP. Their performance metrics diagnostics, custom roadmaps, and micro-sprints was exceptionally high standard."
+                        </p>
+                    </div>
+                    <div class="flex items-center mt-6 space-x-3 pt-6 border-t border-brand-border/40">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs font-bold font-mono">RM</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Rohan Mehta</h4>
+                            <p class="text-xs text-slate-500">VP of Engineering, CloudCore Inc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 flex flex-col justify-between hover:border-brand-500/30 transition-colors">
+                    <div class="space-y-4">
+                        <div class="flex items-center text-yellow-500 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            "The continuous Git-based pull-request review dynamics mimics how we work every single day. The engineers we recruited from EETIRP needed zero training onboarding."
+                        </p>
+                    </div>
+                    <div class="flex items-center mt-6 space-x-3 pt-6 border-t border-brand-border/40">
+                        <div class="w-10 h-10 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-xs font-bold font-mono">AL</div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Ananya Iyer</h4>
+                            <p class="text-xs text-slate-500">Tech Lead & Founder, SynthAI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-24 bg-slate-950/40 border-t border-brand-border/60 relative overflow-hidden">
+        <div class="absolute -top-40 right-10 w-96 h-96 bg-brand-600/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono font-bold tracking-widest text-brand-500 bg-brand-500/10 px-3 py-1.5 rounded-full uppercase">Leadership & Backing</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-4 mb-4">Meet the Ecosystem Drivers</h2>
+                <p class="text-slate-400 text-base">The architects, developers, and strategic partners building EETIRP into a production-scale engineering sandbox.</p>
+            </div>
+
+            <!-- Responsive Dynamic Team Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Founder Card -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-600/10 rounded-full filter blur-xl pointer-events-none group-hover:bg-brand-600/20 transition-all duration-300"></div>
+                    <div>
+                        <div class="relative w-20 h-20 mx-auto mb-6">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center text-white text-2xl font-black font-mono shadow-lg shadow-brand-600/20">
+                                KB
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-slate-900 border border-brand-border rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-crown text-[10px] text-amber-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">Kaushal Baitha</h3>
+                            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold">Founder & Chief Architect</span>
+                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                Leading technical directions and backend systems design. Passionate about project-centric engineering and enterprise system development.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-brand-border/40">
+                        <a href="https://kaushalbaitha7.vercel.app" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-brand-border text-slate-200 text-xs font-bold transition-all flex items-center justify-center space-x-2">
+                            <span>Explore Portfolio</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Co-founder Card -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full filter blur-xl pointer-events-none group-hover:bg-cyan-500/20 transition-all duration-300"></div>
+                    <div>
+                        <div class="relative w-20 h-20 mx-auto mb-6">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-tr from-cyan-600 to-teal-500 flex items-center justify-center text-white text-2xl font-black font-mono shadow-lg shadow-cyan-600/20">
+                                KC
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-slate-900 border border-brand-border rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-code text-[10px] text-cyan-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">Karthik C M</h3>
+                            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold">Co-Founder & Head of Operations</span>
+                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                Driving strategic development programs, bootcamp architectures, and product validation cycles to produce day-one engineering leaders.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-brand-border/40">
+                        <a href="https://karthikcm.vercel.app" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-brand-border text-slate-200 text-xs font-bold transition-all flex items-center justify-center space-x-2">
+                            <span>Explore Portfolio</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Investor Card -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-500/10 rounded-full filter blur-xl pointer-events-none group-hover:bg-emerald-500/20 transition-all duration-300"></div>
+                    <div>
+                        <div class="relative w-20 h-20 mx-auto mb-6">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-white text-2xl font-black font-mono shadow-lg shadow-emerald-600/20">
+                                KD
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-slate-900 border border-brand-border rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line text-[10px] text-emerald-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">Karthik D</h3>
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest font-semibold">Strategic Investor</span>
+                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                Sourcing strategic growth capital, industrial partnerships, and scaling market pipelines for in-house studio SaaS platforms.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-brand-border/40">
+                        <a href="https://karthikd1.vercel.app" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-brand-border text-slate-200 text-xs font-bold transition-all flex items-center justify-center space-x-2">
+                            <span>Explore Portfolio</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cyber Security Analyst Card -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-rose-500/10 rounded-full filter blur-xl pointer-events-none group-hover:bg-rose-500/20 transition-all duration-300"></div>
+                    <div>
+                        <div class="relative w-20 h-20 mx-auto mb-6">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-tr from-rose-600 to-red-500 flex items-center justify-center text-white text-2xl font-black font-mono shadow-lg shadow-rose-600/20">
+                                KS
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-slate-900 border border-brand-border rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-shield-halved text-[10px] text-rose-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">Kartikeya Singh</h3>
+                            <span class="text-xs font-mono text-rose-400 uppercase tracking-widest font-semibold">Cyber Security Analyst</span>
+                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                Fortifying EETIRP's SaaS infrastructure, running continuous penetration testing audits, and setting core protocols for product sandbox environments.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-brand-border/40">
+                        <div class="w-full py-2.5 rounded-xl bg-slate-900/40 border border-brand-border/40 text-slate-400 text-xs font-bold flex items-center justify-center space-x-2">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                            <span>Ecosystem SecOps Node</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing & Strategy Leader Card -->
+                <div class="bg-brand-card rounded-2xl border border-brand-border p-6 hover:border-brand-500/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-48 h-48 bg-amber-500/10 rounded-full filter blur-xl pointer-events-none group-hover:bg-amber-500/20 transition-all duration-300"></div>
+                    <div>
+                        <div class="relative w-20 h-20 mx-auto mb-6">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-tr from-amber-600 to-orange-500 flex items-center justify-center text-white text-2xl font-black font-mono shadow-lg shadow-amber-600/20">
+                                PS
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-slate-900 border border-brand-border rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-compass text-[10px] text-amber-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-bold text-white mb-1">Pritee Kumari Singh</h3>
+                            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest font-semibold">Marketing & Strategy Leader</span>
+                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                Orchestrating market penetration campaigns, corporate engagement models, and scaling university pipelines for live studio cohorts.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-brand-border/40">
+                        <div class="w-full py-2.5 rounded-xl bg-slate-900/40 border border-brand-border/40 text-slate-400 text-xs font-bold flex items-center justify-center space-x-2">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                            <span>Growth & Ecosystem Sprints</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-[#030712] border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-4">Enter the EETIRP Ecosystem</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Whether you are an ambitious college student aiming for practical mastery, a startup founder looking for SaaS development partnerships, or a corporate engineering leader, we want to talk.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                <!-- Contact Channel Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-brand-card rounded-3xl border border-brand-border p-6 sm:p-8 space-y-8 relative overflow-hidden">
+                        <div class="absolute -top-12 -left-12 w-48 h-48 bg-brand-600/10 rounded-full filter blur-xl pointer-events-none"></div>
+                        
+                        <div>
+                            <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 bg-cyan-400/10 px-3 py-1.5 rounded-full uppercase">Direct Channels</span>
+                            <h3 class="text-2xl font-bold text-white mt-4">Connect with Us</h3>
+                            <p class="text-slate-400 text-sm mt-2 leading-relaxed">
+                                Have questions about our programs, studio partnerships, or custom upskilling frameworks? Reach out directly via email or call us.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Email Card -->
+                            <a href="mailto:eetirpltd@gmail.com" class="flex items-center p-4 bg-slate-900/60 border border-brand-border/60 rounded-2xl hover:border-brand-500/50 hover:bg-slate-900 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-xs text-slate-500 font-mono uppercase tracking-wider">Email Us</p>
+                                    <p class="text-sm font-semibold text-white group-hover:text-brand-400 transition-colors">eetirpltd@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <!-- Phone Card -->
+                            <a href="tel:+918088487801" class="flex items-center p-4 bg-slate-900/60 border border-brand-border/60 rounded-2xl hover:border-cyan-500/50 hover:bg-slate-900 transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-phone text-lg"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-xs text-slate-500 font-mono uppercase tracking-wider">Call / WhatsApp</p>
+                                    <p class="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">+91 8088487801</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="pt-6 border-t border-brand-border/40 text-xs text-slate-500 flex items-center space-x-2">
+                            <i class="fa-solid fa-clock text-cyan-400"></i>
+                            <span>Response SLA: Standard feedback within 24 working hours.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intake Form -->
+                <div class="lg:col-span-7">
+                    <form id="eetirp-intake-form" onsubmit="handleFormSubmission(event)" class="bg-brand-card rounded-3xl border border-brand-border p-6 sm:p-10 shadow-2xl space-y-6 text-left relative">
+                        <!-- Success State Overlay -->
+                        <div id="form-success-overlay" class="hidden absolute inset-0 bg-brand-dark/95 backdrop-blur-md z-10 rounded-3xl flex flex-col items-center justify-center text-center p-6 space-y-4">
+                            <i class="fa-solid fa-circle-check text-5xl text-emerald-400 animate-bounce"></i>
+                            <h3 class="text-2xl font-black text-white">Application Recorded!</h3>
+                            <p class="text-sm text-slate-400 max-w-md">Our onboarding team will review your parameters and get back to you with actionable roadmap directions within 24 working hours.</p>
+                            <button type="button" onclick="resetFormState()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-brand-border text-slate-200 text-xs font-bold">
+                                Submit another form
+                            </button>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Name</label>
+                                <input type="text" id="form-name" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Email Address</label>
+                                <input type="email" id="form-email" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. john@university.edu">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Profile Segment</label>
+                                <select id="form-segment" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
+                                    <option value="student">Engineering College Student</option>
+                                    <option value="professional">Working Tech Professional</option>
+                                    <option value="startup">Startup Founder / Studio Partner</option>
+                                    <option value="corporate">Corporate HR / Enterprise Team</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Focus Domain Interest</label>
+                                <select id="form-domain" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
+                                    <option value="bootcamp">Coding Bootcamps (Hands-on)</option>
+                                    <option value="saas">SaaS Joint Sprints (Sandbox)</option>
+                                    <option value="upskilling">Corporate Upskilling Initiatives</option>
+                                    <option value="research">Research & Innovative PoCs</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Core Query / Goals</label>
+                            <textarea id="form-message" rows="4" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="Briefly describe what you are looking to build or prepare for..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold tracking-wide shadow-xl shadow-brand-600/20 hover:scale-[1.01] transition-transform">
+                            Initialize Onboarding Diagnostics
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark border-t border-brand-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Info Column -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center justify-center p-1 h-9 bg-white rounded-lg shadow-md shadow-white/5">
+                            <img src="WhatsApp Image 2026-06-05 at 11.15.36 PM.jpeg" alt="EETIRP Logo" class="h-full w-auto object-contain rounded">
+                        </div>
+                        <span class="text-xl font-black tracking-widest text-white">EETIRP</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        EETIRP is a custom-engineered ecosystem. We act as a hybrid EdTech program combined with an active production SaaS startup studio to transition candidates from college fundamentals to absolute industry readiness.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-linkedin text-lg"></i></a>
+                        <a href="#" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-discord text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Sitemap / Quick Links Column -->
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase text-slate-200 tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#about" class="hover:text-white transition-colors">Our Positioning</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">What We Do</a></li>
+                        <li><a href="#saas-lab" class="hover:text-white transition-colors">SaaS Sandbox Lab</a></li>
+                        <li><a href="#team" class="hover:text-white transition-colors">Leadership</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Join Ecosystem</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal/Safety Column -->
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase text-slate-200 tracking-wider mb-4">Contact Details</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-envelope text-brand-400"></i>
+                            <a href="mailto:eetirpltd@gmail.com" class="hover:text-white transition-colors">eetirpltd@gmail.com</a>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-phone text-cyan-400"></i>
+                            <a href="tel:+918088487801" class="hover:text-white transition-colors">+91 8088487801</a>
+                        </li>
+                        <li class="pt-2 text-[11px] text-slate-500 border-t border-brand-border/40 mt-2">
+                            Currently running diagnostics for cohort 2026. Register to claim a custom syllabus review.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-brand-border/40 text-center flex flex-col sm:flex-row justify-between items-center text-[11px] text-slate-500 space-y-4 sm:space-y-0">
+                <p>&copy; 2026 EETIRP LTD. All rights reserved.</p>
+                <div class="space-x-4">
+                    <a href="#" class="hover:text-slate-300">Terms of Use</a>
+                    <span class="text-slate-700">|</span>
+                    <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            // Simulated real-time project logs in the console footer
+            initializeTerminalSimulator();
+        }
+
+        // 1. Mobile Navigation Menu Toggle Action
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // 2. Interactive "The Bridge" Tabs Control Logic
+        function switchBridgeTab(activeTab) {
+            const tabs = ['college', 'eetirp', 'company'];
+            
+            tabs.forEach(tab => {
+                const button = document.getElementById(`btn-tab-${tab}`);
+                const content = document.getElementById(`tab-content-${tab}`);
+                
+                if (tab === activeTab) {
+                    // Activate styles
+                    button.className = "px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-brand-600 to-cyan-500 text-white shadow-md";
+                    content.classList.remove('hidden');
+                    setTimeout(() => {
+                        content.classList.remove('opacity-0');
+                        content.classList.add('opacity-100');
+                    }, 50);
+                } else {
+                    // Deactivate styles
+                    button.className = "px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 bg-slate-850 text-slate-400 hover:text-white";
+                    content.classList.add('hidden');
+                    content.classList.add('opacity-0');
+                    content.classList.remove('opacity-100');
+                }
+            });
+        }
+
+        // 3. Project Selector Action inside the SaaS Lab Panel
+        function selectSaaSLabProject(projectKey) {
+            const projects = ['placement', 'kaura'];
+            
+            projects.forEach(proj => {
+                const card = document.getElementById(`project-card-${proj}`);
+                const content = document.getElementById(`console-content-${proj}`);
+                
+                if (proj === projectKey) {
+                    // Select card state (Active UI highlight)
+                    if (proj === 'placement') {
+                        card.className = "cursor-pointer bg-slate-900 border-2 border-brand-500/80 rounded-2xl p-6 transition-all duration-300 shadow-xl group";
+                        document.getElementById('console-current-project').innerText = "placement-ai";
+                        document.getElementById('console-current-project').className = "text-xs font-mono text-brand-400 bg-brand-400/10 px-2.5 py-1 rounded-md";
+                    } else {
+                        card.className = "cursor-pointer bg-slate-900 border-2 border-cyan-500/80 rounded-2xl p-6 transition-all duration-300 shadow-xl group";
+                        document.getElementById('console-current-project').innerText = "kaura-hub";
+                        document.getElementById('console-current-project').className = "text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2.5 py-1 rounded-md";
+                    }
+                    content.classList.remove('hidden');
+                } else {
+                    // Unselect card state (Deactivated border highlight)
+                    card.className = "cursor-pointer bg-slate-900/40 border border-brand-border rounded-2xl p-6 transition-all duration-300 hover:border-brand-border/85 group";
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // 4. Terminal Simulator logger activity inside the project console card
+        function initializeTerminalSimulator() {
+            const terminalLines = [
+                "placement-ai-prod pipeline: deployment success. (12m ago)",
+                "kaurahub-main server: listening on port :443. (4m ago)",
+                "placement-ai: api telemetry reports 98.4% uptime.",
+                "kaura-hub database: migrating schema v1.2.4...",
+                "eetirp-monitoring: active student repository pull-requests: 18 approved.",
+                "kaurahub-ssl: let's encrypt certificates active."
+            ];
+            
+            const element = document.getElementById('terminal-live-feed');
+            let index = 0;
+            
+            setInterval(() => {
+                index = (index + 1) % terminalLines.length;
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.innerText = terminalLines[index];
+                    element.style.opacity = '1';
+                }, 400);
+            }, 5000);
+        }
+
+        // 5. Intake form logic actions
+        function handleFormSubmission(event) {
+            event.preventDefault();
+
+            // Trigger visually striking success overlay
+            const overlay = document.getElementById('form-success-overlay');
+            overlay.classList.remove('hidden');
+        }
+
+        function resetFormState() {
+            document.getElementById('eetirp-intake-form').reset();
+            const overlay = document.getElementById('form-success-overlay');
+            overlay.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
