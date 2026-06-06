@@ -143,7 +143,7 @@
                 </div>
             </div>
 
-            <!-- Main Heading with Solid text-white for "Engineering Leaders" -->
+            <!-- Main Heading -->
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none mb-6">
                 The Hybrid Ecosystem For <br class="hidden sm:inline">
                 <span class="text-white">Engineering Leaders</span>
@@ -911,7 +911,7 @@
                     </div>
                 </div>
 
-                <!-- Intake Form with Direct Mail Trigger at bottom -->
+                <!-- Intake Form with AJAX mail integration -->
                 <div class="lg:col-span-7">
                     <form id="eetirp-intake-form" onsubmit="handleFormSubmission(event)" class="bg-brand-card rounded-3xl border border-brand-border p-6 sm:p-10 shadow-2xl space-y-6 text-left relative">
                         <!-- Success State Overlay -->
@@ -927,18 +927,18 @@
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Name</label>
-                                <input type="text" id="form-name" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. John Doe">
+                                <input type="text" id="form-name" name="Name" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. John Doe">
                             </div>
                             <div>
                                 <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Email Address</label>
-                                <input type="email" id="form-email" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. john@university.edu">
+                                <input type="email" id="form-email" name="Email" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="e.g. john@university.edu">
                             </div>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Profile Segment</label>
-                                <select id="form-segment" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
+                                <select id="form-segment" name="Segment" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
                                     <option value="student">Engineering College Student</option>
                                     <option value="professional">Working Tech Professional</option>
                                     <option value="startup">Startup Founder / Studio Partner</option>
@@ -947,7 +947,7 @@
                             </div>
                             <div>
                                 <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Focus Domain Interest</label>
-                                <select id="form-domain" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
+                                <select id="form-domain" name="Domain" class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors">
                                     <option value="bootcamp">Coding Bootcamps (Hands-on)</option>
                                     <option value="saas">SaaS Joint Sprints (Sandbox)</option>
                                     <option value="upskilling">Corporate Upskilling Initiatives</option>
@@ -958,10 +958,10 @@
 
                         <div>
                             <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-2">Your Core Query / Goals</label>
-                            <textarea id="form-message" rows="4" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="Briefly describe what you are looking to build or prepare for..."></textarea>
+                            <textarea id="form-message" name="Message" rows="4" required class="w-full bg-slate-950 border border-brand-border rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-500 text-sm transition-colors" placeholder="Briefly describe what you are looking to build or prepare for..."></textarea>
                         </div>
 
-                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold tracking-wide shadow-xl shadow-brand-600/20 hover:scale-[1.01] transition-transform">
+                        <button id="submit-diagnostics-btn" type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-brand-600 to-cyan-500 text-white font-bold tracking-wide shadow-xl shadow-brand-600/20 hover:scale-[1.01] transition-transform flex items-center justify-center">
                             Initialize Onboarding Diagnostics
                         </button>
 
@@ -1127,11 +1127,7 @@
             const element = document.getElementById('terminal-live-feed');
             let index = 0;
             
-            let simulator = setInterval(() => {
-                if(!element) {
-                    clearInterval(simulator);
-                    return;
-                }
+            setInterval(() => {
                 index = (index + 1) % terminalLines.length;
                 element.style.opacity = '0';
                 setTimeout(() => {
@@ -1141,13 +1137,79 @@
             }, 5000);
         }
 
-        // 5. Intake form logic actions
+        // 5. Intake form submission with live AJAX FormSubmit integration
         function handleFormSubmission(event) {
             event.preventDefault();
 
-            // Trigger visually striking success overlay
-            const overlay = document.getElementById('form-success-overlay');
-            overlay.classList.remove('hidden');
+            const submitBtn = document.getElementById('submit-diagnostics-btn');
+            const originalBtnContent = submitBtn.innerHTML;
+
+            // Update button state to loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Sending Diagnostics...</span>
+            `;
+
+            // Prepare structured payload for FormSubmit
+            const payload = {
+                Name: document.getElementById('form-name').value,
+                Email: document.getElementById('form-email').value,
+                Segment: document.getElementById('form-segment').value,
+                Domain: document.getElementById('form-domain').value,
+                Message: document.getElementById('form-message').value,
+                _subject: "EETIRP Web Onboarding: New Candidate Onboarding Application!"
+            };
+
+            // Post request to FormSubmit endpoint asynchronously
+            fetch('https://formsubmit.co/ajax/eetirpltd@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Network dispatch error');
+                }
+            })
+            .then(data => {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+
+                // Show success state overlay
+                const overlay = document.getElementById('form-success-overlay');
+                overlay.classList.remove('hidden');
+            })
+            .catch(error => {
+                console.error('AJAX Submit failure, running fallback:', error);
+                
+                // Fallback: Trigger client side mailto system so user can send easily
+                const fallbackSubject = encodeURIComponent(payload._subject);
+                const fallbackBody = encodeURIComponent(
+                    `Hello EETIRP Onboarding Team,\n\n` +
+                    `Here are my details for onboarding:\n\n` +
+                    `Name: ${payload.Name}\n` +
+                    `Email: ${payload.Email}\n` +
+                    `Segment: ${payload.Segment}\n` +
+                    `Domain: ${payload.Domain}\n\n` +
+                    `Query/Goals:\n${payload.Message}`
+                );
+                
+                window.location.href = `mailto:eetirpltd@gmail.com?subject=${fallbackSubject}&body=${fallbackBody}`;
+
+                // Restore button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            });
         }
 
         function resetFormState() {
